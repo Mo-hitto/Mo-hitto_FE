@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 60px;
+    background-color: white;
+    border-bottom: 1.5px solid #B5B5B5;
+  }
+  
+  .header-logo {
+    height: 80px;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* 메뉴와 프로필 사이 간격 */
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: 50px;
+    font-weight: 600;
+    font-size: 24px;
+    color: #474747;
+    
+  }
+  
+  .nav-item {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .nav-item:hover {
+    color:#27496D;
+  }
+  
+  .header-profile {
+    width: 62px;
+    height: 62px;
+  }
+  

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+
+/* 전체 푸터 스타일 */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #ffffff;
+    color: #8E8E8E;
+    border-top: 1.5px solid #8E8E8E;
+    font-size: 0.6rem;
+    position: relative;
+}
+
+/* 왼쪽 텍스트 스타일 */
+.footer-left {
+    color: #8E8E8E;
+    font-size: 16px;
+}
+
+/* 중앙 로고 스타일 */
+.footer-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Jersey 25', sans-serif;
+}
+
+/* 오른쪽 링크와 아이콘 스타일 */
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.insta-logo {
+    width: 18px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
