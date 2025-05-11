@@ -1,0 +1,83 @@
+.kakao-page {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 1090px;
+  height: 666px;
+  display: flex;
+  background-color: #27496D;
+  border-radius: 40px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+}
+
+.left {
+  flex: 1.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-logo {
+  width: 474px;
+  height: auto;
+}
+
+.right-wrapper {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-card {
+  background-color: #fff;
+  border-radius: 40px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88.2%;
+}
+
+.desc {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #243b64;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.kakaoLogo {
+  width:17px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.kakao-btn {
+  background-color: #fee500;
+  border: none;
+  padding: 14px 50px;
+  font-size: 1rem;
+  color: #1F1F1F;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kakao-btn:hover {
+  background-color: #e4cc00;
+}

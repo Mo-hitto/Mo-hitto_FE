@@ -1,1 +1,1 @@
-# Mo-hitto_FE![alt text](image.png)
+# Mo-hitto_FE!
