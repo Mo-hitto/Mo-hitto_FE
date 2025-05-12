@@ -20,7 +20,7 @@ const KakaoRedirectPage = () => {
 
         const { accessToken } = response.data;
         localStorage.setItem("accessToken", accessToken);
-        navigate("/");
+        navigate("/main/main");
       } catch (err) {
         console.error("카카오 로그인 실패", err);
         alert("로그인 실패");

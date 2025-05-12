@@ -1,7 +1,7 @@
 import React from "react";
 import KakaoLogin from "../components/Login/KakaoLogin";
 
-function Consulting() {
+function Login() {
   return (
     <div>
       <KakaoLogin />
@@ -9,4 +9,4 @@ function Consulting() {
   );
 }
 
-export default Consulting;
+export default Login;

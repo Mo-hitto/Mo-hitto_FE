@@ -4,7 +4,7 @@ import loginLogo from "../../assets/loginLogo.png";
 import kakao from "../../assets/kakao.png";
 
 const REST_API_KEY = "a3c2fb00ee052dcf258bc6cf78da7fdc";
-const REDIRECT_URI = "http://localhost:5173/consulting";
+const REDIRECT_URI = "http://localhost:5173/main";
 
 const KakaoLogin = () => {
   const handleLogin = () => {
