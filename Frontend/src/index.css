@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif; /* 기본 폰트 설정 */
+    font-family: 'Montserrat', sans-serif !important; /* 기본 폰트 설정 */
     margin: 0;
     padding: 0;
     box-sizing: border-box;

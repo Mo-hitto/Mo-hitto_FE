@@ -5,13 +5,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 20px 90px;
     background-color: #ffffff;
     color: #8E8E8E;
-    border-top: 1.5px solid #8E8E8E;
     font-size: 14px;
     position: relative;
 }
+
+.footer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%;           /* 시작 지점 */
+    width: 90%;          /* 전체 너비의 80%만 선 */
+    height: 1.5px;
+    background-color: #8e8e8e;
+  }
 
 /* 왼쪽 텍스트 스타일 */
 .footer-left {

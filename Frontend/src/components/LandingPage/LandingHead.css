@@ -1,0 +1,14 @@
+.header-right2 {
+    margin-top: 10px;
+}
+
+.login-btn {
+    background-color: #EEEEEE;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+} 

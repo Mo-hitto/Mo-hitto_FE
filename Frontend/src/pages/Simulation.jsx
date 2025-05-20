@@ -1,16 +1,14 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import MainComponent from "../components/MainPage/MainComponent";
 
-function Main() {
+function Simulation() {
   return (
     <div>
       <Header />
-      <MainComponent />
       <Footer />
     </div>
   );
 }
 
-export default Main;
+export default Simulation;

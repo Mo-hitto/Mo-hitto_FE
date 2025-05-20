@@ -1,12 +1,22 @@
 .header {
+    position:relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 60px;
+    padding: 28px 80px;
     background-color: white;
-    border-bottom: 1.5px solid #B5B5B5;
   }
   
+.header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 4%;           /* 시작 지점 */
+    width: 92%;          /* 전체 너비의 80%만 선 */
+    height: 1.5px;
+    background-color: #B5B5B5;
+  }
+
   .header-logo {
     height: 60px;
   }
