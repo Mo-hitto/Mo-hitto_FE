@@ -1,0 +1,73 @@
+.consult-container {
+  padding: 10px 100px 50px 100px;
+}
+
+.consult-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #27496D;
+  margin-bottom: 20px;
+}
+
+.consult-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 35px 40px 15px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 35px;
+  gap: 16px;
+}
+
+.consult-logo {
+  width: 90px;
+  height: auto;
+}
+
+.consult-text-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consult-subheading {
+  font-size: 20px;
+  color: #27496D;
+  margin: 0;
+}
+
+.consult-brand {
+  font-size: 55px;
+  font-weight: 550;
+  color: #27496D;
+  margin: 0;
+}
+
+.consult-description {
+  font-size: 20px;
+  color: #27496D;
+  margin-top: 15px;
+}
+
+.consult-button {
+  align-self: flex-end;
+  background-color: #27496D;
+  color: #ffffff;
+  padding: 12px 50px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  position: relative;
+  bottom: 20px;
+}
+
+.consult-button:hover {
+  background-color: #102132;
+}

@@ -1,10 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const KakaoRedirectPage = () => {
   const navigate = useNavigate();
+  const hasRun = useRef(false);
 
   useEffect(() => {
+    if (hasRun.current) return;
+    hasRun.current = true;
+
     const code = new URL(window.location.href).searchParams.get("code");
 
     const sendCodeToBackend = async () => {
@@ -20,21 +24,35 @@ const KakaoRedirectPage = () => {
           }
         );
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const result = await response.json();
+        console.log("🎯 백엔드 응답:", result);
+
+        const success = result.success ?? result.isSuccess;
+        if (!success) {
+          alert(result.message || "로그인 실패");
+          navigate("/login");
+          return;
         }
 
-        const { grantType, accessToken, refreshToken } = await response.json();
-        const bearerToken = `${grantType} ${accessToken}`;
+        const accessToken = result.data?.accessToken;
+        const refreshToken = result.data?.refreshToken;
 
-        localStorage.setItem("accessToken", bearerToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        console.log("accessToken:", bearerToken);
+        if (!accessToken) {
+          alert("accessToken 없음");
+          navigate("/login");
+          return;
+        }
 
+        localStorage.setItem("accessToken", accessToken);
+        if (refreshToken) {
+          localStorage.setItem("refreshToken", refreshToken);
+        }
+
+        console.log("✅ 로그인 성공");
         navigate("/main");
       } catch (err) {
-        console.error("카카오 로그인 실패:", err);
-        alert("로그인에 실패했습니다. 다시 시도해주세요.");
+        console.error("❌ 예외 발생:", err.message || err);
+        alert("서버 통신 오류");
         navigate("/login");
       }
     };
@@ -42,7 +60,7 @@ const KakaoRedirectPage = () => {
     if (code) sendCodeToBackend();
   }, [navigate]);
 
-  return <div>로그인 처리 중입니다...</div>;
+  return <div></div>;
 };
 
 export default KakaoRedirectPage;

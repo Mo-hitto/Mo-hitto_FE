@@ -49,3 +49,84 @@
     height: 40px;
   }
   
+  .header-profile-container {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .profile-popup {
+    position: absolute;
+    top: 55px; /* 프로필 아래 여백 */
+    right: 0;
+    width: 220px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    z-index: 1000;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .popup-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .popup-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup-name {
+    font-size: 16px;
+    color: #393939;
+  }
+  
+  .popup-email {
+    font-size: 14px;
+    color: #747474;
+  }
+  
+  .popup-item {
+    display: block;
+    margin: 15px 0;
+    font-size: 15px;
+    color: #393939;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .popup-item:hover {
+    color: #27496D;
+  }
+  
+  .logout-button {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    color: #27496D;
+  }
+  
+  .popup-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
