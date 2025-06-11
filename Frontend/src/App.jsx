@@ -12,7 +12,7 @@ import Simulation2 from "./pages/Simulation/Simulation2";
 import BasicDiagnosis from "./pages/Consultant/BasicDiagnosis";
 import PreferDiagnosis from "./pages/Consultant/PreferDiagnosis";
 import ImageUpload from "./pages/Consultant/ImageUpload";
-import HairShop from "./pages/Hair/Hairshop";
+import HairShop from "./pages/Hair/HairShop";
 import HairDetail from "./pages/Hair/HairDetail";
 import Myhome from "./pages/Mypage/Myhome";
 import Myhair from "./pages/Mypage/Myhair";
