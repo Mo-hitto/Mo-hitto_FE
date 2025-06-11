@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Function from "../components/LandingPage/Function";
-import Soong from "../components/LandingPage/Soong";
+import Function from "../components/LandingPage/Function.jsx";
+import Soong from "../components/LandingPage/Soong.jsx";
 import Hero2 from "../components/MainPage/Hero2";
 import Start2 from "../components/MainPage/Start2";
 
