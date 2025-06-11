@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import profile from "../assets/profile.png";
 import Smile from "../assets/Smile.png";
-import heart from "../assets/heart.png";
+import heart2 from "../assets/heart2.png";
 import Home from "../assets/Home.png";
 import Logout from "../assets/Logout.png";
 
@@ -11,8 +11,46 @@ import "./Header.css";
 
 const Header = () => {
   const [showProfilePopup, setShowProfilePopup] = useState(false);
+  const [userInfo, setUserInfo] = useState({ name: "", email: "" });
   const popupRef = useRef(null);
   const navigate = useNavigate();
+
+  // 유저 정보 불러오기
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+        if (!token) throw new Error("토큰이 없습니다.");
+
+        const formattedToken = token.startsWith("Bearer ")
+          ? token
+          : `Bearer ${token}`;
+
+        const response = await fetch(
+          "http://43.203.208.49:8080/mypage/userInfo",
+          {
+            method: "GET",
+            headers: {
+              Authorization: formattedToken,
+              Accept: "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) throw new Error("유저 정보 요청 실패");
+
+        const resData = await response.json();
+        setUserInfo({
+          name: resData.data?.name ?? "",
+          email: resData.data?.email ?? "",
+        });
+      } catch (err) {
+        console.error("유저 정보 조회 실패:", err.message);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   // 외부 클릭 시 팝업 닫기
   useEffect(() => {
@@ -45,16 +83,14 @@ const Header = () => {
           "Content-Type": "application/json",
           Authorization: `${accessToken}`,
         },
-        body: JSON.stringify({
-          refreshToken: `${refreshToken}`,
-        }),
+        body: JSON.stringify({ refreshToken }),
       });
 
       if (response.status === 204) {
         console.log("✅ 로그아웃 성공");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        navigate("/"); // 첫 화면으로 이동
+        navigate("/");
       } else {
         console.error("❌ 로그아웃 실패", await response.text());
       }
@@ -90,8 +126,8 @@ const Header = () => {
               <div className="profile-info">
                 <img src={profile} className="popup-avatar" />
                 <div className="popup-text">
-                  <div className="popup-name">김민주</div>
-                  <div className="popup-email">minju@naver.com</div>
+                  <div className="popup-name">{userInfo.name}</div>
+                  <div className="popup-email">{userInfo.email}</div>
                 </div>
               </div>
               <hr />
@@ -100,7 +136,7 @@ const Header = () => {
                 나의 계정
               </Link>
               <Link to="/Myhair" className="popup-item">
-                <img src={heart} className="popup-icon" />
+                <img src={heart2} className="popup-icon" />
                 저장한 헤어
               </Link>
               <Link to="/Myshop" className="popup-item">

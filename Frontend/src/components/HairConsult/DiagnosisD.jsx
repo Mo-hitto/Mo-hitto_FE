@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./DiagnosisB.css";
 import "./DiagnosisD.css";
 
-const DiagnosisD = ({ onComplete }) => {
+const DiagnosisD = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const diagnosisId = location.state?.diagnosisId;
@@ -11,7 +11,6 @@ const DiagnosisD = ({ onComplete }) => {
   const [selectedMoods, setSelectedMoods] = useState([]);
   const [difficultyId, setDifficultyId] = useState(null);
 
-  // diagnosisId가 없으면 이전 페이지로 리다이렉트
   useEffect(() => {
     if (!diagnosisId) {
       alert("진단 ID가 누락되었습니다. 처음부터 다시 시도해주세요.");
@@ -77,7 +76,11 @@ const DiagnosisD = ({ onComplete }) => {
 
       const result = await response.json();
       console.log("✅ 선호도 진단 완료:", result);
-      if (onComplete) onComplete(); // 다음 단계로 넘기기 (예: 이미지 업로드)
+
+      // ✅ 다음 페이지로 이동
+      navigate("/imageUpload", {
+        state: { diagnosisId },
+      });
     } catch (err) {
       console.error("선호도 제출 실패:", err.message || err);
     }
@@ -90,9 +93,6 @@ const DiagnosisD = ({ onComplete }) => {
       </h2>
       <div className="consult-b-container">
         <div className="consult-b-header">
-          <span className="consult-b-back" onClick={() => navigate(-1)}>
-            &lt;
-          </span>
           <h3 className="consult-b-title">선호도 진단</h3>
         </div>
 

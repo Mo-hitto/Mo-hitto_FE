@@ -13,6 +13,7 @@
     margin: 0 auto;
     font-family: sans-serif;
     margin-top: 35px;
+    overflow-x: hidden;
   }
   
   /* 상단 헤더 구조 */

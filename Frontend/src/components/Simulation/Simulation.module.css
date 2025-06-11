@@ -1,0 +1,240 @@
+.container {
+  display: flex;
+  gap: 50px;
+  padding: 50px 20px 40px 20px;
+  justify-content: center; /* 가로 중앙정렬 */
+  align-items: center; /* 세로 중앙정렬 */
+  }
+  
+  .modelSelector {
+    flex: 0 0 450px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 15px 0px rgba(39, 73, 109, 0.5);
+  
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    height: 620px;
+    overflow: hidden; /* 전체 영역에서 내부만 스크롤 */
+    margin-bottom: 33px;
+  }
+  
+  .genderTabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #B5B5B5;
+    flex-shrink: 0; /* 고정 영역 */
+  }
+  
+  .modelGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  
+    flex-grow: 1; /* 남은 영역을 모두 차지 */
+    overflow-y: auto; /* 여기에만 스크롤 발생 */
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: #B5B5B5 transparent;
+  }
+  
+  .modelGrid::-webkit-scrollbar {
+    width: 6px;
+  }
+  .modelGrid::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+  }
+  .modelGrid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+
+.genderButton {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: none;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    color: #6b7280;
+    position: relative; /* 추가 */
+    z-index: 1; /* 추가 */
+}
+
+.genderButton.active {
+    color: #27496D;
+    border-bottom: 3px solid #27496D; /* border-bottom-color 대신 전체 border 재정의 */
+    margin-bottom: -2px; /* 부모의 border를 덮기 위해 아래로 2px 이동 */
+}
+  
+  .modelGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .modelItem {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background-color: #EBEBEB;
+    border: 2px solid transparent; /* 기본 투명 테두리 추가 */
+}
+
+.modelItem:hover {
+    background-color: #f3f4f6;
+}
+
+.modelItem.selected {
+    border-color: #27496D; /* 선택된 아이템에 테두리 색상 */
+    background-color: #f3f4f6;
+}
+
+.modelImage {
+    width: 110px;
+    height: 135px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* .modelImage.selected 클래스 완전 제거 */
+
+.modelItem p {
+    margin: 8px 0 0 0;
+    font-size: 17px;
+    color: #27496D;
+    font-weight: 600;
+}
+  
+  /* 오른쪽 시뮬레이션 영역 */
+  .simulationSection {
+    flex: 0 0 620px;
+    display: flex;
+    flex-direction: column;
+    padding:0;
+    min-height: 629px; /* 고정 높이 설정 */
+  }
+  
+  .simulationHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* flex-end에서 center로 변경 */
+    margin-bottom: 20px;
+    border-bottom: 4px solid #27496D; /* 전체 컨테이너에 border 적용 */
+    padding-bottom: 10px; /* 전체 컨테이너에 padding 적용 */
+    position: relative; /* 상대 위치 설정 */
+}
+
+.simulationHeader h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: #27496D;
+    padding-bottom: 0; /* padding-bottom 제거 */
+    border-bottom: none; /* border-bottom 제거 */
+    flex: 0 0 auto; 
+    text-align: center; /* 중앙 정렬 */
+}
+
+.changeImageButton {
+    padding: 8px 16px;
+    background-color: #D4DBE2;
+    color: #27496D;
+    border-radius: 6px;
+    border:none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: absolute; /* 절대 위치 */
+    left: 0; /* 왼쪽 끝에 배치 */
+    top: 40%; /* 세로 중앙 */
+    transform: translateY(-50%); /* 정확한 세로 중앙 정렬 */
+}
+  
+  .changeImageButton:hover {
+    background: #e5e7eb;
+  }
+  
+  /* 업로드 영역 */
+
+  .imageContainer {
+    width: 100%;
+    height: 450px; /* 고정 높이 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0; /* 이미지 컨테이너도 고정 크기 */
+    margin-top: 40px;
+  }
+
+  .uploadImageOnly {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+
+  .uploadImageOnly img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+.uploadInput {
+    display: none;
+}
+
+/* 미리보기 및 결과 이미지 */
+.previewImage,
+.resultImage {
+    width: 450px;
+    height: 450px;
+    border-radius: 12px;
+    margin: 0 auto 20px auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+  
+  /* 생성 버튼 */
+  .submitButton {
+    padding: 12px 6px;
+    background: #27496D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: auto;
+    width: 150px; /* 원하는 가로 길이로 조정 */
+    margin-left: auto; /* 중앙 정렬을 위해 추가 */
+    margin-right: auto; /* 중앙 정렬을 위해 추가 */
+    margin-top: 30px;
+  }
+  
+  .submitButton:hover:not(:disabled) {
+    background: #1f2937;
+    transform: translateY(-1px);
+  }
+  
+  .submitButton:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+  }

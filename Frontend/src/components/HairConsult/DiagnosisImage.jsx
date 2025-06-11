@@ -1,59 +1,126 @@
-import React, { useState } from "react";
-import "./DiagnosisB.css";
+import React, { useState, useEffect } from "react";
+import ImageUpload from "../../assets/ImageUpload.png";
+import guidePicture from "../../assets/guidePicture.png";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./DiagnosisImage.css";
-import { useNavigate } from "react-router-dom";
 
-const DiagnosisImage = ({ onComplete }) => {
-  const [imageFile, setImageFile] = useState(null);
+const DiagnosisImage = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const diagnosisId = location.state?.diagnosisId;
 
-  const handleFileChange = (e) => {
+  const [preview, setPreview] = useState(null);
+  const [resizedFile, setResizedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!diagnosisId) {
+      alert("진단 정보가 누락되었습니다. 처음부터 다시 시작해주세요.");
+      navigate("/");
+    }
+  }, [diagnosisId, navigate]);
+
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setImageFile(file);
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      setPreview(base64);
+      resizeImage(base64);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const resizeImage = (dataUrl) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, 512, 512);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) {
+            alert("이미지 변환에 실패했습니다.");
+            return;
+          }
+          const jpegFile = new File([blob], "upload.jpg", {
+            type: "image/jpeg",
+          });
+          setResizedFile(jpegFile);
+        },
+        "image/jpeg",
+        0.9
+      );
+    };
+    img.onerror = () => alert("이미지 로드에 실패했습니다.");
+    img.src = dataUrl;
   };
 
   const handleSubmit = async () => {
-    if (!imageFile) {
-      alert("이미지를 선택해주세요.");
+    if (!resizedFile || !diagnosisId) {
+      alert("이미지를 업로드하고 다시 시도하세요.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("imageFile", imageFile);
+    setLoading(true);
 
     try {
+      const formData = new FormData();
+      formData.append("image", resizedFile);
+      const dataPayload = { diagnosisId };
+      const dataBlob = new Blob([JSON.stringify(dataPayload)], {
+        type: "application/json",
+      });
+      formData.append("data", dataBlob);
+
+      console.log("📦 백엔드 전송 데이터:");
+      console.log("🖼️ image (File):", resizedFile);
+      console.log("📄 data (JSON):", dataPayload);
+
       const accessToken = localStorage.getItem("accessToken");
 
-      const response = await fetch("http://43.203.208.49:8080/image/upload", {
-        method: "POST",
-        headers: {
-          Authorization: `${accessToken}`,
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        "http://43.203.208.49:8080/simulation/recommand",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `${accessToken}`,
+          },
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`HTTP ${response.status} - ${errorText}`);
       }
 
-      const data = await response.json();
-      console.log("✅ 이미지 업로드 성공:", data);
-      if (onComplete) onComplete(); // 결과 페이지 이동 or 완료 처리
+      const result = await response.json();
+      console.log("💇‍♀️ 추천 결과:", result);
+
+      navigate("/ConsultingR", {
+        state: result,
+      });
     } catch (err) {
-      console.error("이미지 업로드 실패:", err.message || err);
+      console.error("업로드 실패:", err.message || err);
+      alert("이미지 업로드에 실패했습니다.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="consult-container">
-      <h2 className="consult-title-2">| 이미지 업로드</h2>
+      <h2 className="consult-title-2">
+        | 최적의 헤어스타일을 찾기 위한 설문을 진행합니다.
+      </h2>
       <div className="consult-b-container">
         <div className="consult-b-header">
-          <span className="consult-b-back" onClick={() => navigate(-1)}>
-            &lt;
-          </span>
-          <h3 className="consult-b-title">이미지를 업로드하세요.</h3>
+          <h3 className="consult-b-title">이미지 업로드</h3>
         </div>
 
         <div className="consult-b-steps">
@@ -63,44 +130,43 @@ const DiagnosisImage = ({ onComplete }) => {
         </div>
 
         <div className="consult-b-section">
-          <label className="consult-image-upload">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              hidden
-            />
-            <div className="upload-box">
-              {imageFile ? (
-                <img
-                  src={URL.createObjectURL(imageFile)}
-                  alt="preview"
-                  className="upload-preview"
-                />
-              ) : (
-                <>
-                  <img src="/icon/image-placeholder.svg" alt="placeholder" />
-                  <span>파일 선택</span>
-                </>
-              )}
+          <p className="consult-b-label">이미지를 업로드하세요.</p>
+          <div className="upload-layout">
+            <div className="upload-wrapper">
+              <label htmlFor="image-upload" className="upload-clickable">
+                {preview ? (
+                  <img
+                    src={preview}
+                    alt="업로드 미리보기"
+                    className="preview-image"
+                  />
+                ) : (
+                  <img
+                    src={ImageUpload}
+                    alt="업로드 UI"
+                    className="upload-ui-image"
+                  />
+                )}
+              </label>
+              <input
+                id="image-upload"
+                type="file"
+                accept="image/jpeg, image/jpg"
+                onChange={handleImageChange}
+                style={{ display: "none" }}
+              />
             </div>
-          </label>
-        </div>
 
-        <div className="consult-b-section">
-          <div className="image-tip-box">
-            <strong>이런 사진이 좋아요.</strong>
-            <ul>
-              <li>이마와 턱선, 귀까지 보이는 사진</li>
-              <li>정면을 바라보는 셀카 혹은 증명사진</li>
-              <li>그림자가 지지 않은 사진</li>
-            </ul>
+            <img src={guidePicture} alt="사진 가이드" className="guide-image" />
           </div>
         </div>
-
         <div className="consult-b-submit-wrap">
-          <button className="consult-b-submit" onClick={handleSubmit}>
-            제출하기
+          <button
+            className="consult-b-submit"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? "추천 중..." : "제출하기"}
           </button>
         </div>
       </div>

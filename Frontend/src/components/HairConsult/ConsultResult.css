@@ -1,0 +1,71 @@
+.consult-result-container {
+    padding: 40px 20px;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .consult-result-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #27496D;
+    text-align: left;
+  }
+  
+  .consult-result-subtitle {
+    font-size: 16px;
+    color: #393939;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+  
+  .recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .recommendation-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .recommendation-box:hover {
+    transform: translateY(-4px);
+  }
+  
+  .recommendation-rank {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27496D;
+    border: 2px solid #27496D;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-bottom: 12px;
+  }
+  
+  .recommendation-style {
+    font-size: 16px;
+    font-weight: 600;
+    color: #27496D;
+    margin-bottom: 20px;
+  }
+  
+  .recommendation-button {
+    background: #27496D;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  

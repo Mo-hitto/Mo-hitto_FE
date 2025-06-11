@@ -1,0 +1,106 @@
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 40px 60px 40px;
+  }
+  
+  .hero-content {
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  .hero-title {
+    font-size: 64px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 24px;
+    color: #8E8E8E;
+    margin-bottom: 3rem;
+  }
+
+  .hero-subtitle strong {
+    font-weight: 700;
+    color: #8e8e8e;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .hero-btn {
+    padding: 0.9rem 60px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+  }
+  
+  .hero-btn.primary {
+    background-color: #00909E;
+    color: white;
+  }
+  
+  .hero-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 144, 158, 0.3);
+  }
+  
+  .hero-btn.secondary {
+    background-color: transparent;
+    color: #00909E;
+    border: 2px solid #00909E;
+  }
+  
+  .hero-btn.secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 144, 158, 0.3);
+  }
+  
+  /* 반응형 디자인 */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .hero-btn {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 0.9rem;
+    }
+    
+    .hero-container {
+      padding: 1rem;
+      min-height: 70vh;
+    }
+  }

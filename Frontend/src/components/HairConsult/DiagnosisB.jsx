@@ -9,6 +9,7 @@ const DiagnosisB = ({ onNext }) => {
     hairLengthId: null,
     foreheadShapeId: null,
     cheekboneId: null,
+    hasbangId: null, // ✅ 앞머리 여부
   });
 
   const handleSelect = (field, value) => {
@@ -46,7 +47,6 @@ const DiagnosisB = ({ onNext }) => {
 
       console.log("진단 ID:", diagnosisId);
 
-      // ✅ 페이지 이동 + ID 전달
       navigate("/PreferDiagnosis", {
         state: { diagnosisId },
       });
@@ -57,8 +57,8 @@ const DiagnosisB = ({ onNext }) => {
 
   const options = {
     sexId: [
-      { label: "여성", value: 1 },
-      { label: "남성", value: 2 },
+      { label: "남성", value: 1 },
+      { label: "여성", value: 2 },
     ],
     hairTypeId: [
       { label: "직모", value: 1 },
@@ -66,9 +66,9 @@ const DiagnosisB = ({ onNext }) => {
       { label: "반곱슬", value: 3 },
     ],
     hairLengthId: [
-      { label: "단발", value: 1 },
-      { label: "중단발", value: 2 },
-      { label: "장발", value: 3 },
+      { label: "숏", value: 1 },
+      { label: "미디움", value: 2 },
+      { label: "롱", value: 3 },
     ],
     foreheadShapeId: [
       { label: "둥근형", value: 1 },
@@ -79,6 +79,11 @@ const DiagnosisB = ({ onNext }) => {
       { label: "많이 도드라짐", value: 1 },
       { label: "약간 도드라짐", value: 2 },
       { label: "눈에 띄지않음", value: 3 },
+    ],
+    hasbangId: [
+      { label: "있음", value: 1 },
+      { label: "없음", value: 2 },
+      { label: "모름", value: 3 },
     ],
   };
 
@@ -91,9 +96,6 @@ const DiagnosisB = ({ onNext }) => {
       </h2>
       <div className="consult-b-container">
         <div className="consult-b-header">
-          <span className="consult-b-back" onClick={() => navigate(-1)}>
-            &lt;
-          </span>
           <h3 className="consult-b-title">기초 진단</h3>
         </div>
         <div className="consult-b-steps">
@@ -113,7 +115,10 @@ const DiagnosisB = ({ onNext }) => {
                 ? "현재 헤어 기장을 선택하세요."
                 : key === "foreheadShapeId"
                 ? "이마 모양을 선택하세요."
-                : "광대 모양을 선택하세요."}
+                : key === "cheekboneId"
+                ? "광대 모양을 선택하세요."
+                : "현재 앞머리 유무를 선택하세요."}{" "}
+              {/* hasbangId */}
             </p>
             <div className="consult-b-options">
               {choices.map(({ label, value }) => (

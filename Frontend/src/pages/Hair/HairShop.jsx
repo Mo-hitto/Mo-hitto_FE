@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ShopRecommend from "../../components/HairDetail/ShopRecommed";
+import ShopRecommend from "../../components/HairDetail/ShopRecommend";
 
 function HairShop() {
   return (

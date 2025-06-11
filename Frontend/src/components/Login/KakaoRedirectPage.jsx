@@ -36,14 +36,17 @@ const KakaoRedirectPage = () => {
 
         const accessToken = result.data?.accessToken;
         const refreshToken = result.data?.refreshToken;
+        const userId = result.data?.id; // ✅ userId 추출
 
-        if (!accessToken) {
-          alert("accessToken 없음");
+        if (!accessToken || !userId) {
+          alert("accessToken 또는 userId 없음");
           navigate("/login");
           return;
         }
 
+        // ✅ 토큰 및 userId 저장
         localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("userId", userId);
         if (refreshToken) {
           localStorage.setItem("refreshToken", refreshToken);
         }

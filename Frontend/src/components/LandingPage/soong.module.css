@@ -1,0 +1,117 @@
+.characterImage {
+    max-width: 400px;
+    height: 326px;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }.mohidoSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 100px 20px;
+  }
+  
+  .contentContainer {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    margin-top: 20px;
+  }
+  
+  /* 상단 중앙 제목 섹션 */
+  .titleSection {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .mainTitle {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+  
+  .subTitle {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .colorPrimary {
+    color: #00909E;
+  }
+  
+  .colorSecondary {
+    color: #767676;
+  }
+
+  /* 하단 컨텐츠 영역 */
+  .bottomContent {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* 왼쪽 메시지 영역 */
+  .chatMessages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end; /* 왼쪽 정렬로 변경 */
+  }
+  
+  .messageBox {
+    background: transparent;
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: flex-start;
+    max-width: 500px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-30px); /* 초기 위치 왼쪽 */
+    transition: all 1.2s ease-out;
+  }
+  
+  .fadeIn {
+    opacity: 1;
+    transform: translateX(0); /* 원래 위치로 이동 */
+  }
+  
+  
+  .messageImage {
+    width: 100%;
+    height: auto;
+  }
+  
+  
+  .message2 {
+    left:100px;
+  }
+  
+  .message3 {
+    left:50px;
+  }
+  
+  /* 오른쪽 캐릭터 영역 */
+  .characterSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
