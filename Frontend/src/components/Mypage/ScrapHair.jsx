@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import hearted from "../../assets/hearted.png"; // 하트 아이콘
+import hearted from "../../assets/hearted.png";
 import "./ScrapHair.css";
 
 const ScrapHair = () => {
@@ -28,16 +28,16 @@ const ScrapHair = () => {
       );
 
       const result = await response.json();
-      console.log("✅ 좋아요 이미지 목록:", result);
+      console.log("✅ 좋아요 목록 불러오기:", result);
 
       if (response.ok && Array.isArray(result.data)) {
         setHairList(result.data);
       } else {
-        console.warn("⚠️ 예상과 다른 응답:", result);
+        console.warn("⚠️ 예상 외 응답:", result);
         setHairList([]);
       }
     } catch (error) {
-      console.error("🚨 요청 실패:", error);
+      console.error("🚨 목록 요청 실패:", error);
       setHairList([]);
     }
   };
@@ -50,8 +50,6 @@ const ScrapHair = () => {
       return;
     }
 
-    console.log("📡 좋아요 토글 요청 body:", { hairId, imageUrl });
-
     try {
       const response = await fetch(
         "http://43.203.208.49:8080/simulation/like-toggle",
@@ -62,8 +60,8 @@ const ScrapHair = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            hairId,
-            imageUrl,
+            hairId: hairId,
+            imageUrl: imageUrl,
           }),
         }
       );
@@ -71,14 +69,35 @@ const ScrapHair = () => {
       const result = await response.json();
       console.log("📥 좋아요 토글 응답:", result);
 
-      if (response.ok && result.success && result.data) {
-        // 서버에서는 liked 여부를 리턴하지 않음 → 프론트에서 상태를 유추
-        // 따라서, 프론트 입장에서는 그냥 UI에서 제거해도 문제 없음
-        setHairList((prev) =>
-          prev.filter((hair) => hair.createdImageId !== hairId)
-        );
+      if (response.ok && result.success) {
+        const likedStatus = result.data?.liked;
+
+        if (likedStatus === false || likedStatus === "false") {
+          // 디버깅용 로그 추가
+          console.log("제거할 hairId:", hairId, typeof hairId);
+          console.log(
+            "현재 hairList:",
+            hairList.map((h) => ({
+              id: h.createdImageId,
+              type: typeof h.createdImageId,
+            }))
+          );
+
+          setHairList((prev) => {
+            const filtered = prev.filter((hair) => {
+              // 문자열과 숫자 비교를 위해 둘 다 문자열로 변환
+              return String(hair.createdImageId) !== String(hairId);
+            });
+            console.log("필터링 후:", filtered.length, "개 남음");
+            return filtered;
+          });
+
+          console.log("✅ 좋아요 취소 완료");
+        } else {
+          console.warn("⚠️ 좋아요 상태:", likedStatus);
+        }
       } else {
-        throw new Error("좋아요 토글 실패");
+        console.warn("⚠️ 응답이 성공적이지 않음:", result);
       }
     } catch (err) {
       console.error("❌ 좋아요 취소 실패:", err);
@@ -113,7 +132,6 @@ const ScrapHair = () => {
                 alt={hair.hairName}
                 className="scrap-image"
               />
-              <button className="scrap-detail-button">상세보기</button>
             </div>
           ))
         ) : (
