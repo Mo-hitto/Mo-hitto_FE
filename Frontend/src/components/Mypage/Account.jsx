@@ -16,7 +16,7 @@ const Account = () => {
           : `Bearer ${token}`;
 
         const response = await fetch(
-          "http://43.203.208.49:8080/mypage/userInfo",
+          "https://iise-mohitto.store/mypage/userInfo",
           {
             method: "GET",
             headers: {

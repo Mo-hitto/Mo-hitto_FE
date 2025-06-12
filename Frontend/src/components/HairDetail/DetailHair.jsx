@@ -57,7 +57,7 @@ const DetailHair = () => {
         console.log("🛰️ 전송 데이터:", payload); // 콘솔 로그 추가
 
         const response = await fetch(
-          "http://43.203.208.49:8080/simulation/recommand/transfer-face",
+          "https://iise-mohitto.store/simulation/recommand/transfer-face",
           {
             method: "POST",
             headers: {
@@ -142,7 +142,7 @@ const DetailHair = () => {
 
     try {
       const response = await fetch(
-        "http://43.203.208.49:8080/simulation/like-toggle",
+        "https://iise-mohitto.store/simulation/like-toggle",
         {
           method: "POST",
           headers: {
@@ -247,7 +247,7 @@ const DetailHair = () => {
             )}
             <div className="style-info">
               <div className="style-info-content">
-                <h4>디자인 설명</h4>
+                <h4>스타일 설명 및 추천 이유</h4>
                 <p>{styleData.description}</p>
                 {styleData.hair_shops?.length > 0 && (
                   <div className="hair-shops-section">

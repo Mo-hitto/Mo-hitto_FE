@@ -27,7 +27,7 @@ const Header = () => {
           : `Bearer ${token}`;
 
         const response = await fetch(
-          "http://43.203.208.49:8080/mypage/userInfo",
+          "https://iise-mohitto.store/mypage/userInfo",
           {
             method: "GET",
             headers: {
@@ -77,7 +77,7 @@ const Header = () => {
     }
 
     try {
-      const response = await fetch("http://43.203.208.49:8080/oauth2/logout", {
+      const response = await fetch("https://iise-mohitto.store/oauth2/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

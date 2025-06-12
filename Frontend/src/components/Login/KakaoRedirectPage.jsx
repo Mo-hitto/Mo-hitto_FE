@@ -14,7 +14,7 @@ const KakaoRedirectPage = () => {
     const sendCodeToBackend = async () => {
       try {
         const response = await fetch(
-          "http://43.203.208.49:8080/oauth2/login/kakao",
+          "https://iise-mohitto.store/oauth2/login/kakao",
           {
             method: "POST",
             headers: {

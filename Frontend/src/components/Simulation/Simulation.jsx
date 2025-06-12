@@ -3,9 +3,9 @@ import styles from "./Simulation.module.css";
 import ImageUpload from "../../assets/simulUpload.png";
 
 // 이미지 추출 - 여자
-import cloud from "../../assets/girl/cloud.png";
-import grace from "../../assets/girl/grace.png";
-import glam from "../../assets/girl/glam.png";
+import cloud from "../../assets/Girl/cloud.png";
+import grace from "../../assets/Girl/grace.png";
+import glam from "../../assets/Girl/glam.png";
 import layerdCut from "../../assets/Girl/layerdCut.png";
 import layerdPerm from "../../assets/Girl/layerdPerm.png";
 import ballet from "../../assets/Girl/ballet.png";
@@ -135,7 +135,7 @@ const Simulation = () => {
 
       const token = localStorage.getItem("accessToken");
       const response = await fetch(
-        "http://43.203.208.49:8080/simulation/transfer-face",
+        "https://iise-mohitto.store/simulation/transfer-face",
         {
           method: "POST",
           headers: {

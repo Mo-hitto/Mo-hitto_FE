@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ImageUpload from "../../assets/ImageUpload.png";
+import ImageUpload from "../../assets/imageUpload.png";
 import guidePicture from "../../assets/guidePicture.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./DiagnosisImage.css";
@@ -84,7 +84,7 @@ const DiagnosisImage = () => {
       const accessToken = localStorage.getItem("accessToken");
 
       const response = await fetch(
-        "http://43.203.208.49:8080/simulation/recommand",
+        "https://iise-mohitto.store/simulation/recommand",
         {
           method: "POST",
           headers: {

@@ -31,7 +31,7 @@ const ShopRecommend = ({ queryName, onClose }) => {
 
       try {
         const res = await fetch(
-          `http://43.203.208.49:8080/salon/naver?query=${queryName}`,
+          `https://iise-mohitto.store/salon/naver?query=${queryName}`,
           { headers: { Authorization: `${accessToken}` } }
         );
         const data = await res.json();
@@ -54,7 +54,7 @@ const ShopRecommend = ({ queryName, onClose }) => {
     const userQuery = encodeURIComponent(JSON.stringify({ userId }));
     try {
       const savedRes = await fetch(
-        `http://43.203.208.49:8080/mypage/salons/saved?authUserInfo=${userQuery}`,
+        `https://iise-mohitto.store/mypage/salons/saved?authUserInfo=${userQuery}`,
         { headers: { Authorization: `${accessToken}` } }
       );
       const savedData = await savedRes.json();
@@ -76,7 +76,7 @@ const ShopRecommend = ({ queryName, onClose }) => {
       if (!isSaved) {
         const address = encodeURIComponent(shop.address);
         const res = await fetch(
-          `http://43.203.208.49:8080/salon/save?authUserInfo=${userQuery}&address=${address}`,
+          `https://iise-mohitto.store/salon/save?authUserInfo=${userQuery}&address=${address}`,
           {
             method: "POST",
             headers: { Authorization: `${accessToken}` },
@@ -85,7 +85,7 @@ const ShopRecommend = ({ queryName, onClose }) => {
         if (!res.ok) throw new Error("저장 실패");
       } else {
         const res = await fetch(
-          `http://43.203.208.49:8080/mypage/salons/saved/${savedSalonId}?authUserInfo=${userQuery}`,
+          `https://iise-mohitto.store/mypage/salons/saved/${savedSalonId}?authUserInfo=${userQuery}`,
           {
             method: "DELETE",
             headers: { Authorization: `${accessToken}` },

@@ -22,7 +22,7 @@ const ScrapShop = () => {
     try {
       const query = encodeURIComponent(JSON.stringify({ userId }));
       const response = await fetch(
-        `http://43.203.208.49:8080/mypage/salons/saved?authUserInfo=${query}`,
+        `https://iise-mohitto.store/mypage/salons/saved?authUserInfo=${query}`,
         {
           method: "GET",
           headers: {
@@ -58,7 +58,7 @@ const ScrapShop = () => {
     try {
       const query = encodeURIComponent(JSON.stringify({ userId }));
       const response = await fetch(
-        `http://43.203.208.49:8080/mypage/salons/saved/${salonId}?authUserInfo=${query}`,
+        `https://iise-mohitto.store/mypage/salons/saved/${salonId}?authUserInfo=${query}`,
         {
           method: "DELETE",
           headers: {

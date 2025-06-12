@@ -29,7 +29,7 @@ const DiagnosisB = ({ onNext }) => {
       console.log("🔐 Authorization 헤더:", requestHeaders.Authorization);
 
       const response = await fetch(
-        "http://43.203.208.49:8080/diagnosis/basic",
+        "https://iise-mohitto.store/diagnosis/basic",
         {
           method: "POST",
           headers: requestHeaders,
@@ -65,11 +65,6 @@ const DiagnosisB = ({ onNext }) => {
       { label: "곱슬", value: 2 },
       { label: "반곱슬", value: 3 },
     ],
-    hairLengthId: [
-      { label: "숏", value: 1 },
-      { label: "미디움", value: 2 },
-      { label: "롱", value: 3 },
-    ],
     foreheadShapeId: [
       { label: "둥근형", value: 1 },
       { label: "M자형", value: 2 },
@@ -80,10 +75,14 @@ const DiagnosisB = ({ onNext }) => {
       { label: "약간 도드라짐", value: 2 },
       { label: "눈에 띄지않음", value: 3 },
     ],
+    hairLengthId: [
+      { label: "숏", value: 1 },
+      { label: "미디움", value: 2 },
+      { label: "롱", value: 3 },
+    ],
     hasbangId: [
-      { label: "있음", value: 1 },
-      { label: "없음", value: 2 },
-      { label: "모름", value: 3 },
+      { label: "네", value: 1 },
+      { label: "아니요", value: 2 },
     ],
   };
 
@@ -111,13 +110,13 @@ const DiagnosisB = ({ onNext }) => {
                 ? "성별을 선택하세요."
                 : key === "hairTypeId"
                 ? "모발 형태를 선택하세요."
-                : key === "hairLengthId"
-                ? "현재 헤어 기장을 선택하세요."
-                : key === "foreheadShapeId"
-                ? "이마 모양을 선택하세요."
                 : key === "cheekboneId"
                 ? "광대 모양을 선택하세요."
-                : "현재 앞머리 유무를 선택하세요."}{" "}
+                : key === "foreheadShapeId"
+                ? "이마 모양을 선택하세요."
+                : key === "hairLengthId"
+                ? "원하는 헤어 기장을 선택하세요."
+                : "앞머리 있는 헤어를 원하시나요?"}{" "}
               {/* hasbangId */}
             </p>
             <div className="consult-b-options">

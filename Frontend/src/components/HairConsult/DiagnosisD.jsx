@@ -55,7 +55,7 @@ const DiagnosisD = () => {
       const accessToken = localStorage.getItem("accessToken");
 
       const response = await fetch(
-        `http://43.203.208.49:8080/diagnosis/${diagnosisId}/preference`,
+        `https://iise-mohitto.store/diagnosis/${diagnosisId}/preference`,
         {
           method: "POST",
           headers: {

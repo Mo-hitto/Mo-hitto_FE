@@ -2,7 +2,7 @@ import React from "react";
 import "./KakaoLogin.css";
 import kakao from "../../assets/kakao.png";
 
-const KAKAO_LOGIN_URL = "http://43.203.208.49:8080/oauth2/kakao";
+const KAKAO_LOGIN_URL = "https://iise-mohitto.store/oauth2/kakao";
 
 const KakaoLogin = ({ onClose }) => {
   const handleLogin = () => {
